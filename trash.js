@@ -1,5 +1,3 @@
-
-
 function renderTrash(notes) {
   const notesList = document.querySelector(".js-notes");
 

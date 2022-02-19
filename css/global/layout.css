@@ -67,10 +67,9 @@
 }
 
 .container-right__text {
-  position: absolute;
-  width: 395px;
-  height: 96px;
-  top: 385px;
+  min-height: 500px;
+  min-width: 500px;
+  top: 59px;
 }
 
 .container-right__note {

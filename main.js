@@ -5,7 +5,7 @@ const form = document.querySelector(".js-note-form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const {title, body, color} = event.target.elements;
+  const {title, body } = event.target.elements;
   const newNote = {
     title: title.value,
     body: body.value,
@@ -13,6 +13,7 @@ form.addEventListener("submit", (event) => {
     deleted: false,
   };
   createNote(newNote);
+  renderNotes(notes);
   // location.assign("/");???
 });
 
