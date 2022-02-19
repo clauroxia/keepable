@@ -22,9 +22,8 @@ const initialNotes = [
 ];
 
 // Get notes from storage or setup new ones
-const notesFromStorage = JSON.parse(localStorage.getItem("expenses"));
+const notesFromStorage = JSON.parse(localStorage.getItem("notes"));
 const notes = notesFromStorage || initialNotes;
-
 
 //Create note
 function createNote(note) {
