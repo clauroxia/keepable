@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keepable</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="container m-0">
+    <header class="header">
+      <div class="header__container flex flex__align-center gap-9">
+        <img src="./images/keepable.svg" class="header__container-logo"/>
+        <p class="content-sm white m-0">Welcome to {keepable}</p>
+      </div>
+    </header>
+    <div class="flex">
+      <div class="container-left">
+        <div class="container-left__links flex flex-column flex__justify-center gap-2">
+          <div class="container-left__item bg-button flex flex__align-center gap-5">
+            <img src="./images/brackets.svg" class="container-left__brackets"/>
+            <p class="content-md white"><a href="#">Notes</a></p>
+          </div>
+          <div class="container-left__item button flex flex__align-center gap-5">
+            <img src="./images/trash.svg" class="container-left__trash"/>
+            <p class="content-md white"><a href="trash.html">Trash</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="container-right flex flex-column items-center">
+        <div class="container-right__note">
+          <form>
+            <div class="container-right__content flex flex-column gap-5">
+              <div class="flex flex-column gap-2 p-0">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    style="width:560px; height: 20px;"
+                    class="no-border outlinenone content-xs black"
+                    id=""
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Take a note"
+                    style="width:560px; height: 24px;"
+                    class="no-border outlinenone content-xm black"
+                    id=""
+                  />
+                </div>
+              </div>
+              <div class="container-right__actions flex flex__align-center flex__space-between">
+                <div class="container-right__palette flex flex__align-center flex__justify-center">
+                  <a href="#">
+                    <img src="./images/palette.svg" class="container-right__content-palette"/>
+                  </a>
+                </div>
+                <a href="#"><p class="content-xm__bold black">Keep it!</p></a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="container-right__text">
+          <p class="content-lg white text-center m-0 ">No notes to keep</p>
+        </div>
+      </div>
+    </div>
+
+ 
+
+    <script src="start.js" ></script>
+  </body>
+</html>
