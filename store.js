@@ -34,7 +34,11 @@ function createNote(note) {
 
 // Delete note
 function deleteNote(note) {
-  const index = notes.indexOf(note);
-  notes.splice(index, 1);
+  if (isTrash(note)) {
+    const index = notes.indexOf(note);
+    notes.splice(index, 1);
+  } else {
+    note.deleted = true;
+  };
   localStorage.setItem("notes", JSON.stringify(notes));
 };
