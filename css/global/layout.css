@@ -1,102 +1,97 @@
 .header {
-  position: relative;
-  max-width: 1440px;
-  height: 70px;
+	position: relative;
+	width: 100%;
+	height: 70px;
 }
 
 .header__container {
-  max-width: 1440px;
-  height: 70px;
-  border: 1px solid #D1D1D1;
-  box-sizing: border-box;
+	width: 100%;
+	height: 70px;
+	border: 1px solid #d1d1d1;
+	box-sizing: border-box;
 }
 
 .header__container-logo {
-  width: 138px;
-  height: 24px;
-  margin: 0px 15px;
+	width: 138px;
+	height: 24px;
+	margin: 0px 15px;
 }
 
 .container {
-  position: relative;
-  width: 1440px;
-  height: 1024px;
-  background-color: #1D2128;
+	position: relative;
+	width: 100%;
+	height: 1024px;
+	background-color: #1d2128;
 }
 
 .container-left {
-  width: 280px;
-  height: 954px;
-  border: 1px solid #D1D1D1;
-  box-sizing: border-box;
+	width: 280px;
+	height: 954px;
+	border: 1px solid #d1d1d1;
+	box-sizing: border-box;
 }
 
 .container-left__brackets {
-  width: 20px;
-  height: 16px;
-  margin: 0px 20px;
+	width: 20px;
+	height: 16px;
+	margin: 0px 20px;
 }
 
 .container-left__trash {
-  width: 17px;
-  height: 18px;
-  margin: 0px 20px;
+	width: 17px;
+	height: 18px;
+	margin: 0px 20px;
 }
 
 .container-left__links {
-  width: 280px;
-  height: 126px;
-  padding: 10px 0px;
+	width: 280px;
+	height: 126px;
+	padding: 10px 0px;
 }
 
 .container-left__item {
-  width: 280px;
-  height: 48px;
-  border-radius: 0px 25px 25px 0px;
+	width: 280px;
+	height: 48px;
+	border-radius: 0px 25px 25px 0px;
 }
 
 .button:active {
-  background-color: #999B9E;
+	background-color: #999b9e;
 }
 
 .container-right {
-  width: 1160px;
-  height: 954px;
-  border: 1px solid #D1D1D1;
-  box-sizing: border-box;
-}
-
-.container-right__text {
-  min-height: 500px;
-  min-width: 500px;
-  top: 59px;
+	width: 100%;
+	height: 954px;
+	border: 1px solid #d1d1d1;
+	box-sizing: border-box;
+	padding: 24px 24px;
 }
 
 .container-right__note {
-  width: 600px;
-  height: 150px;
-  border-radius: 8px;
-  background-color: #FFFFFF;
-  margin: 24px 0px;
+	width: 600px;
+	height: 150px;
+	border-radius: 8px;
+	background-color: #ffffff;
+	margin: 0 auto;
 }
 
 .container-right__content {
-  width: 560px;
-  height: 110px;
-  margin: 20px 20px;
+	width: 560px;
+	height: 110px;
+	margin: 20px 20px;
 }
 
 .container-right__actions {
-  width: 560px;
-  height: 36px;
+	width: 560px;
+	height: 36px;
 }
 
 .container-right__content-palette {
-  width: 18px;
-  height: 18px;
+	width: 18px;
+	height: 18px;
 }
 
 .container-right__palette {
-  width: 36px;
-  height: 36px;
+	width: 36px;
+	height: 36px;
 }

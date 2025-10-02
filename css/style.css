@@ -3,59 +3,56 @@
 @import url("./global/utils.css");
 
 .notes {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1260px;
-  margin-left: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
 }
+
 .note__detail {
-  margin: 20px 20px;
-  height: max-content;
-  display: flex;
-  flex-direction: column;
+	margin: 20px 20px;
+	height: max-content;
+	display: flex;
+	flex-direction: column;
 }
 
 .indNote {
-  width: 260px;
-  height: 260px;
-  border-radius: 8px;
-  display: grid;
-  grid-template-rows: 200px 40px;
+	width: 255px;
+	height: 255px;
+	border-radius: 8px;
+	display: grid;
+	grid-template-rows: 200px 40px;
 }
 
 .note__actions {
-  bottom: 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  
+	bottom: 0px;
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
 }
 
 .trash {
-  width: 18px;
-  height: 18px;
-  margin: auto;
+	width: 18px;
+	height: 18px;
+	margin: auto;
 }
 
 .delete__container {
-  width: 36px;
-  height: 36px;
-  border-radius: 100px;
-  background-color: #999B9E;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+	width: 36px;
+	height: 36px;
+	border-radius: 100px;
+	background-color: #999b9e;
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
 
 .palette__container {
-  width: 36px;
-  height: 36px;
-  border-radius: 100px;
-  background-color: black;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  margin-left: 20px;
+	width: 36px;
+	height: 36px;
+	border-radius: 100px;
+	background-color: black;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	margin-left: 20px;
 }
