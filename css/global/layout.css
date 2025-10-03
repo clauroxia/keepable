@@ -64,7 +64,7 @@
 	height: 954px;
 	border: 1px solid #d1d1d1;
 	box-sizing: border-box;
-	padding: 24px 24px;
+	padding: 24px 20px;
 }
 
 .container-right__note {
@@ -84,11 +84,6 @@
 .container-right__actions {
 	width: 560px;
 	height: 36px;
-}
-
-.container-right__content-palette {
-	width: 18px;
-	height: 18px;
 }
 
 .container-right__palette {

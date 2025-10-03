@@ -1,6 +1,5 @@
 // Get notes from storage or setup new ones
 const notes = JSON.parse(localStorage.getItem("notes")) || [];
-renderNotes(notes);
 
 // Create note
 function createNote(note) {
