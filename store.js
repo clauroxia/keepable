@@ -20,7 +20,7 @@ function deleteNote(note) {
 
 // Render notes
 function renderNotes(notes) {
-	const notesList = document.querySelector(".js-notes");
+	const notesList = document.querySelector(".js-active-notes");
 	notesList.innerHTML = "";
 	let deletedNotes = notes.filter((note) => note.deleted);
 
@@ -29,9 +29,10 @@ function renderNotes(notes) {
 		return;
 	}
 
-	notes.forEach((note) => {
+	notes.forEach((note, index) => {
 		if (!isTrash(note)) {
 			const noteEl = createNoteEl(note);
+			noteEl.dataset.index = index;
 			notesList.append(noteEl);
 		}
 	});
