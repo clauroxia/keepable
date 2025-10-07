@@ -15,7 +15,7 @@
 	flex-direction: column;
 }
 
-.indNote {
+.single-note {
 	width: 245px;
 	height: 255px;
 	border-radius: 8px;
@@ -30,31 +30,29 @@
 	gap: 20px;
 }
 
-.trash {
+/* .delete__container {
+	width: 36px;
+	height: 36px;
+	border-radius: 100px;
+	background-color: #ffffff80;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+} */
+
+.icon-container {
+	width: 36px;
+	height: 36px;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon {
 	width: 18px;
 	height: 18px;
 	margin: auto;
-}
-
-.delete__container {
-	width: 36px;
-	height: 36px;
-	border-radius: 100px;
-	background-color: #999b9e;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-}
-
-.palette__container {
-	width: 36px;
-	height: 36px;
-	border-radius: 100px;
-	background-color: black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-left: 20px;
 }
 
 .palette__color-table {

@@ -3,13 +3,17 @@
 	background-color: white;
 }
 
-.bg-button {
+.bg-gray {
 	background-color: #999b9e;
 }
 
 /* colors */
 .white {
 	color: #ffffff;
+}
+
+.white-transparent {
+	background-color: #ffffff80;
 }
 
 .black {
@@ -59,6 +63,10 @@
 
 .mt-40 {
 	margin-top: 10rem;
+}
+
+.ml-5 {
+	margin-left: 1.25rem;
 }
 
 /* Flex & Grid */
@@ -190,4 +198,9 @@
 
 .hidden {
 	visibility: hidden;
+}
+
+/* Radius */
+.rounded {
+	border-radius: 100%;
 }

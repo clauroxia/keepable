@@ -1,7 +1,11 @@
 // Submit note
-const form = document.querySelector(".js-note-form");
-const paletheButton = document.querySelector(".js-palette-button");
-const path = paletheButton.querySelector("svg path");
+const form = document.querySelector(".js-form");
+const activeNotes = document.querySelector(".js-active-notes");
+const title = document.querySelector(".js-title");
+const body = document.querySelector(".js-body");
+const colorChart = document.createElement("div");
+colorChart.classList.add("palette__color-table", "hidden");
+document.body.append(colorChart);
 let colorValue = "#ffffff";
 
 form.addEventListener("submit", (event) => {
@@ -16,32 +20,43 @@ form.addEventListener("submit", (event) => {
 
 	createNote(newNote);
 	renderNotes(notes);
-	formReset();
+	formReset(title, body);
 });
 
-const container = document.querySelector(".js-container");
-const colorTable = document.createElement("div");
+form.addEventListener("click", (e) => handlePaletteClick(e, form));
+activeNotes.addEventListener("click", (e) =>
+	handlePaletteClick(e, activeNotes)
+);
 
-container.addEventListener("click", (e) => {
-	if (e.target.closest(".js-palette-button")) {
-		e.preventDefault();
+function handlePaletteClick(ev, src) {
+	if (ev.target.closest(".js-palette-button")) {
+		ev.preventDefault();
 
-		if (!colorTable.classList.contains("visible")) {
-			colorTable.classList.remove("hidden");
-			colorTable.classList.add("visible", "palette__color-table");
-			document.body.append(colorTable);
-			createColorTable();
-			positionColorTableTooltip(e);
+		if (!colorChart.classList.contains("visible")) {
+			openColorChart(ev, src);
 		} else {
-			colorTable.classList.remove("visible");
-			colorTable.classList.add("hidden");
+			closeColorChart(ev, src);
 		}
 	}
-});
+}
 
-function createColorTable() {
+function openColorChart(ev, src) {
+	colorChart.classList.remove("hidden");
+	colorChart.classList.add("visible");
+	createColorChart(ev, src);
+	positionColorChartTooltip(ev);
+	togglePaletteMode(ev, src);
+}
+
+function closeColorChart(ev, src) {
+	colorChart.classList.remove("visible");
+	colorChart.classList.add("hidden");
+	togglePaletteMode(ev, src);
+}
+
+function createColorChart(ev, src) {
 	// Clear previous colors
-	colorTable.innerHTML = "";
+	colorChart.innerHTML = "";
 	let times = 10;
 	const colors = [
 		"#ffffff",
@@ -63,23 +78,42 @@ function createColorTable() {
 		}
 		colorSquare.style.backgroundColor = colors[i];
 		colorSquare.dataset.color = colors[i];
-
-		colorSquare.addEventListener("click", (e) => {
-			e.preventDefault();
-			colorValue = e.target.dataset.color;
-			path.setAttribute("fill", colorValue);
-			colorTable.classList.remove("visible");
-			colorTable.classList.add("hidden");
-		});
-
-		colorTable.append(colorSquare);
+		colorSquare.addEventListener("click", (e) => pickNoteColor(e, ev, src));
+		colorChart.append(colorSquare);
 	}
 }
 
-function positionColorTableTooltip(e) {
+function pickNoteColor(e, ev, src) {
+	e.preventDefault();
+	colorValue = e.target.dataset.color;
+	const paletteContainer = ev.target.closest(".js-palette-container");
+	const path = paletteContainer.querySelector("svg path");
+	// Change icon color and palette background
+	paletteContainer.classList.toggle("bg-gray");
+
+	if (src === form) {
+		path.setAttribute("fill", colorValue);
+	} else if (src === activeNotes) {
+		const noteEl = paletteContainer.closest(".js-single-note");
+		paletteContainer.classList.toggle("white-transparent");
+		const currentFill = path.getAttribute("fill");
+		const newFill = currentFill === "#999B9E" ? "#FFFFFF" : "#999B9E";
+		path.setAttribute("fill", newFill);
+		// Change note color
+		noteEl.style.backgroundColor = colorValue;
+		const noteIndex = parseInt(noteEl.dataset.index);
+		notes[noteIndex].color = colorValue;
+		localStorage.setItem("notes", JSON.stringify(notes));
+	}
+
+	colorChart.classList.toggle("visible");
+	colorChart.classList.toggle("hidden");
+}
+
+function positionColorChartTooltip(e) {
 	// Positioning
 	const rect = e.target.getBoundingClientRect();
-	const tooltipRect = colorTable.getBoundingClientRect();
+	const tooltipRect = colorChart.getBoundingClientRect();
 
 	// Add scroll to get the real absolute position
 	const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
@@ -88,14 +122,31 @@ function positionColorTableTooltip(e) {
 	const left = rect.left + scrollLeft + (rect.width - tooltipRect.width) / 2;
 	const top = rect.top + scrollTop - tooltipRect.height - 16;
 
-	colorTable.style.left = `${left}px`;
-	colorTable.style.top = `${top}px`;
+	colorChart.style.left = `${left}px`;
+	colorChart.style.top = `${top}px`;
 }
 
-function formReset() {
+function togglePaletteMode(ev, src) {
+	const paletteContainer = ev.target.closest(".js-palette-container");
+
+	if (src === activeNotes) {
+		paletteContainer.classList.toggle("white-transparent");
+	}
+	paletteContainer.classList.toggle("bg-gray");
+	const path = paletteContainer.querySelector("svg path");
+	const currentFill = path.getAttribute("fill");
+	const newFill = currentFill === "#999B9E" ? "#FFFFFF" : "#999B9E";
+	path.setAttribute("fill", newFill);
+}
+
+function formReset(title, body) {
+	const paletteContainer = form.querySelector(".js-palette-container");
+	const path = paletteContainer.querySelector("svg path");
+
+	// Reset form and icon color
 	title.value = "";
 	body.value = "";
-	colorValue = "#ffffff";
+	color = "#ffffff";
 	path.setAttribute("fill", "#999B9E");
 }
 
