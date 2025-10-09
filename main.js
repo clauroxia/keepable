@@ -146,7 +146,7 @@ function formReset(title, body) {
 	// Reset form and icon color
 	title.value = "";
 	body.value = "";
-	color = "#ffffff";
+	colorValue = "#ffffff";
 	path.setAttribute("fill", "#999B9E");
 }
 
