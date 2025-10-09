@@ -1,8 +1,6 @@
 // Submit note
 const form = document.querySelector(".js-form");
 const activeNotes = document.querySelector(".js-active-notes");
-const title = document.querySelector(".js-title");
-const body = document.querySelector(".js-body");
 const colorChart = document.createElement("div");
 colorChart.classList.add("palette__color-table", "hidden");
 document.body.append(colorChart);
@@ -10,17 +8,17 @@ let colorValue = "#ffffff";
 
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
-	const { title, body } = event.target.elements;
+	const { title, content } = event.target.elements;
 	const newNote = {
 		title: title.value,
-		body: body.value,
+		content: content.value,
 		color: colorValue,
 		deleted: false,
 	};
 
 	createNote(newNote);
 	renderNotes(notes);
-	formReset(title, body);
+	formReset(title, content);
 });
 
 form.addEventListener("click", (e) => handlePaletteClick(e, form));
@@ -139,13 +137,13 @@ function togglePaletteMode(ev, src) {
 	path.setAttribute("fill", newFill);
 }
 
-function formReset(title, body) {
+function formReset(title, content) {
 	const paletteContainer = form.querySelector(".js-palette-container");
 	const path = paletteContainer.querySelector("svg path");
 
 	// Reset form and icon color
 	title.value = "";
-	body.value = "";
+	content.value = "";
 	colorValue = "#ffffff";
 	path.setAttribute("fill", "#999B9E");
 }

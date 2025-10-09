@@ -8,26 +8,21 @@
 	gap: 16px;
 }
 
-.note__detail {
-	margin: 20px 20px;
-	height: max-content;
-	display: flex;
-	flex-direction: column;
-}
-
 .single-note {
-	width: 245px;
-	height: 255px;
+	width: 205px;
+	height: 225px;
 	border-radius: 8px;
+	padding: 20px 20px 0px 20px;
 	display: grid;
-	grid-template-rows: 200px 40px;
+	grid-template-rows: 185px 40px;
 }
 
 .note__actions {
-	bottom: 0px;
 	display: flex;
+	padding: 2px;
 	flex-direction: row;
-	gap: 20px;
+	gap: 9px;
+	align-items: center;
 }
 
 .icon-container {

@@ -2,28 +2,25 @@ function createNoteEl(note) {
 	const div = document.createElement("div");
 	const noteDetail = document.createElement("div");
 	const title = document.createElement("p");
-	const body = document.createElement("p");
+	const content = document.createElement("p");
 	const actions = document.createElement("div");
 	const deleteCont = document.createElement("div");
 	const deleteLink = document.createElement("a"); //completar
 	const paletteCont = document.createElement("div");
 	const paletteClick = document.createElement("a");
-	const palette = document.createElement("div");
 
 	//setup elements
 	div.classList.add("single-note", "js-single-note");
-	noteDetail.classList.add("note__detail");
-	title.classList.add("content-xs", "black");
+	noteDetail.classList.add("flex", "flex-column", "gap-2_5");
+	title.classList.add("content-xs");
 	title.textContent = note.title;
-	body.classList.add("content-xm", "black");
-	body.textContent = note.body;
+	content.classList.add("content-xm");
+	content.textContent = note.content;
 	div.style.backgroundColor = note.color;
-	actions.classList.add("note__actions", "container-left__item"); // completar
-	actions.style.width = "120px";
+	actions.classList.add("note__actions");
 	paletteCont.classList.add(
 		"icon-container",
 		"white-transparent",
-		"ml-5",
 		"js-palette-container"
 	);
 	paletteClick.classList.add("js-palette-button", "icon");
@@ -46,7 +43,7 @@ function createNoteEl(note) {
                         	/>`;
 
 	// Build template
-	noteDetail.append(title, body);
+	noteDetail.append(title, content);
 	deleteCont.append(deleteLink);
 	paletteCont.append(paletteClick);
 	actions.append(paletteCont, deleteCont);
@@ -56,7 +53,6 @@ function createNoteEl(note) {
 	deleteLink.addEventListener("click", (event) => {
 		event.preventDefault();
 		deleteNote(note);
-		localStorage.setItem("notes", JSON.stringify(notes));
 		renderNotes(notes);
 	});
 
