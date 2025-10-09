@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Keepable</title>
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <body class="container m-0">
-    <header class="header">
-      <div class="header__container flex flex__align-center gap-9">
-        <img src="./images/keepable.svg" class="header__container-logo"/>
-        <p class="content-sm white m-0">Welcome to {keepable}</p>
-      </div>
-    </header>
-    <div class="flex">
-      <div class="container-left">
-        <div class="container-left__links flex flex-column flex__justify-center gap-2">
-          <div class="container-left__item button flex flex__align-center gap-5">
-            <img src="./images/brackets.svg" class="container-left__brackets"/>
-            <p class="content-md white"><a href="main.html">Notes</a></p>
-          </div>
-          <div class="container-left__item bg-button flex flex__align-center gap-5">
-            <img src="./images/trash.svg" class="container-left__trash"/>
-            <p class="content-md white"><a href="#">Trash</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="container-right flex flex-column items-center">
-        <div class="container-right__text js-notes notes">
-          <p class="content-lg white text-center m-0 ">No notes to delete</p>
-        </div>
-      </div>
-    </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Keepable</title>
+		<link rel="stylesheet" href="./css/style.css" />
+	</head>
+	<body class="container m-0">
+		<header class="header">
+			<div class="header__container flex flex__align-center gap-30">
+				<img src="./images/keepable.svg" class="header__container-logo" />
+				<p class="content-sm white m-0">Welcome to {keepable}</p>
+			</div>
+		</header>
+		<div class="flex">
+			<div class="container-left">
+				<div
+					class="container-left__links flex flex-column flex__justify-center gap-2"
+				>
+					<a href="main.html">
+						<div
+							class="container-left__item button flex flex__align-center gap-5"
+						>
+							<img
+								src="./images/brackets.svg"
+								class="container-left__brackets"
+							/>
+							<p class="content-md white">Notes</p>
+						</div>
+					</a>
+					<a href="#">
+						<div
+							class="container-left__item bg-gray flex flex__align-center gap-5"
+						>
+							<img
+								src="./images/white-trash.svg"
+								class="container-left__trash"
+							/>
+							<p class="content-md white">Trash</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="container-right flex flex-column items-center">
+				<div class="container-right__text js-trash-notes notes">
+					<p class="content-lg white text-center m-0">No notes to delete</p>
+				</div>
+			</div>
+		</div>
 
-    <!-- <script src="start.js" ></script> -->
-    <script src="store.js"></script>
-    <script src="helper.js"></script>
-    <script src="trash.js"></script>
-
-  </body>
+		<!-- <script src="start.js" ></script> -->
+		<script src="store.js"></script>
+		<script src="helper.js"></script>
+		<script src="trash.js"></script>
+	</body>
 </html>
