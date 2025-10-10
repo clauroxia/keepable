@@ -37,7 +37,7 @@
 .icon {
 	width: 18px;
 	height: 18px;
-	margin: auto;
+	text-align: center;
 }
 
 .palette__color-table {
