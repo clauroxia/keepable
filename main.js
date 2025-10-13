@@ -16,6 +16,10 @@ form.addEventListener("submit", (event) => {
 		deleted: false,
 	};
 
+	if (!title.value && !content.value) {
+		alert("Please add a title or content to your note.");
+		return;
+	}
 	createNote(newNote);
 	renderNotes(notes);
 	formReset(title, content);
@@ -135,6 +139,12 @@ function togglePaletteMode(ev, src) {
 	const currentFill = path.getAttribute("fill");
 	const newFill = currentFill === "#999B9E" ? "#FFFFFF" : "#999B9E";
 	path.setAttribute("fill", newFill);
+}
+
+// Create note
+function createNote(note) {
+	notes.push(note);
+	localStorage.setItem("notes", JSON.stringify(notes));
 }
 
 function formReset(title, content) {

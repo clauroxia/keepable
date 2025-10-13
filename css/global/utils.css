@@ -160,6 +160,11 @@
 	width: 100%;
 }
 
+/* Height */
+.h-5 {
+	height: 1.25rem;
+}
+
 /* Text styling */
 .text-left {
 	text-align: left;

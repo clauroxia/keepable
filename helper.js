@@ -12,7 +12,7 @@ function createNoteEl(note, type) {
 	//setup elements
 	div.classList.add("single-note", "js-single-note");
 	noteDetail.classList.add("flex", "flex-column", "gap-2_5");
-	title.classList.add("content-xs");
+	title.classList.add("content-xs", "h-5");
 	title.textContent = note.title;
 	content.classList.add("content-xm");
 	content.textContent = note.content;
