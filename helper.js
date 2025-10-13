@@ -76,9 +76,7 @@ function createNoteEl(note, type) {
 	if (type === "trash") {
 		rightIcon.addEventListener("click", (event) => {
 			event.preventDefault();
-			note.deleted = false;
-			delete note.deletedAt;
-			localStorage.setItem("notes", JSON.stringify(notes));
+			restoreNote(note);
 			renderTrash(notes);
 		});
 		leftIcon.addEventListener("click", (event) => {

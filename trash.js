@@ -17,4 +17,10 @@ function renderTrash(notes) {
 		});
 }
 
+function restoreNote(note) {
+	note.deleted = false;
+	delete note.deletedAt;
+	localStorage.setItem("notes", JSON.stringify(notes));
+}
+
 renderTrash(notes);
