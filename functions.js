@@ -5,6 +5,7 @@ const notes = JSON.parse(localStorage.getItem("notes")) || [];
 function renderNotes(notes) {
 	const notesList = document.querySelector(".js-active-notes");
 	notesList.innerHTML = "";
+	const activeNotes = notes.filter((note) => !note.deleted);
 	const deletedNotes = notes.filter((note) => note.deleted);
 
 	if (notes.length === 0 || deletedNotes.length === notes.length) {
@@ -12,12 +13,10 @@ function renderNotes(notes) {
 		return;
 	}
 
-	notes.forEach((note, index) => {
-		if (!isTrash(note)) {
-			const noteEl = createNoteEl(note, "notes");
-			noteEl.dataset.index = index;
-			notesList.append(noteEl);
-		}
+	activeNotes.reverse().forEach((note, index) => {
+		const noteEl = createNoteEl(note, "notes");
+		noteEl.dataset.index = index;
+		notesList.append(noteEl);
 	});
 }
 
@@ -28,6 +27,7 @@ function deleteNote(note) {
 		notes.splice(index, 1);
 	} else {
 		note.deleted = true;
+		note.deletedAt = Date.now();
 	}
 	localStorage.setItem("notes", JSON.stringify(notes));
 }
