@@ -1,10 +1,12 @@
-// Submit note
 const form = document.querySelector(".js-form");
 const activeNotes = document.querySelector(".js-active-notes");
 const colorChart = document.createElement("div");
 colorChart.classList.add("palette__color-table", "hidden");
 document.body.append(colorChart);
 let colorValue = "#ffffff";
+let currentPaletteBtn = null;
+let currentPaletteSrc = null;
+let lastEvent = null;
 
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
@@ -31,14 +33,34 @@ activeNotes.addEventListener("click", (e) =>
 );
 
 function handlePaletteClick(ev, src) {
-	if (ev.target.closest(".js-palette-button")) {
-		ev.preventDefault();
+	const paletteBtn = ev.target.closest(".js-palette-button");
+	if (!paletteBtn) return;
+	ev.preventDefault();
 
-		if (!colorChart.classList.contains("visible")) {
-			openColorChart(ev, src);
-		} else {
-			closeColorChart(ev, src);
-		}
+	// There is a palette open and user clicked another palette button
+	if (
+		colorChart.classList.contains("visible") &&
+		currentPaletteBtn !== paletteBtn
+	) {
+		closeColorChart(lastEvent, currentPaletteSrc);
+		openColorChart(ev, src);
+		currentPaletteBtn = paletteBtn;
+		currentPaletteSrc = src;
+		lastEvent = ev;
+		return;
+	}
+
+	// Alternate open/close if user clicked the same palette button
+	if (colorChart.classList.contains("visible")) {
+		closeColorChart(ev, src);
+		currentPaletteBtn = null;
+		currentPaletteSrc = null;
+		lastEvent = null;
+	} else {
+		openColorChart(ev, src);
+		currentPaletteBtn = paletteBtn;
+		currentPaletteSrc = src;
+		lastEvent = ev;
 	}
 }
 
