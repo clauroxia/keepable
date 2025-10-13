@@ -95,4 +95,23 @@ function formReset(title, content) {
 	path.setAttribute("fill", "#999B9E");
 }
 
+document.addEventListener("click", (ev) => {
+	// There is no palette open → do nothing
+	if (!colorChart.classList.contains("visible")) return;
+
+	// Click inside the current color chart or the current palette button → do nothing
+	if (
+		ev.target.closest(".palette__color-table") ||
+		ev.target.closest(".js-palette-button")
+	) {
+		return;
+	}
+
+	// Click outside → close the color chart
+	closeColorChart(lastEvent, currentPaletteSrc);
+	currentPaletteBtn = null;
+	currentPaletteSrc = null;
+	lastEvent = null;
+});
+
 renderNotes(notes);
