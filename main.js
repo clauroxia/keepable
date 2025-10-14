@@ -12,6 +12,7 @@ form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	const { title, content } = event.target.elements;
 	const newNote = {
+		id: crypto.randomUUID(),
 		title: title.value,
 		content: content.value,
 		color: colorValue,

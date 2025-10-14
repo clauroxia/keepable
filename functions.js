@@ -13,9 +13,9 @@ function renderNotes(notes) {
 		return;
 	}
 
-	activeNotes.reverse().forEach((note, index) => {
+	activeNotes.reverse().forEach((note) => {
 		const noteEl = createNoteEl(note, "notes");
-		noteEl.dataset.index = index;
+		noteEl.dataset.id = note.id;
 		notesList.append(noteEl);
 	});
 }

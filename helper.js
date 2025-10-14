@@ -136,9 +136,12 @@ function pickNoteColor(e, ev, src) {
 		path.setAttribute("fill", newFill);
 		// Change note color
 		noteEl.style.backgroundColor = colorValue;
-		const noteIndex = parseInt(noteEl.dataset.index);
-		notes[noteIndex].color = colorValue;
-		localStorage.setItem("notes", JSON.stringify(notes));
+		const noteId = noteEl.dataset.id;
+		const note = notes.find((n) => n.id === noteId);
+		if (note) {
+			note.color = colorValue;
+			localStorage.setItem("notes", JSON.stringify(notes));
+		}
 	}
 
 	colorChart.classList.toggle("visible");
