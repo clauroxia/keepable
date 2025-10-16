@@ -33,67 +33,40 @@ activeNotes.addEventListener("click", (e) =>
 	handlePaletteClick(e, activeNotes)
 );
 
-function handlePaletteClick(ev, src) {
-	const paletteBtn = ev.target.closest(".js-palette-button");
-	if (!paletteBtn) return;
-	ev.preventDefault();
-
-	// There is a palette open and user clicked another palette button
-	if (
-		colorChart.classList.contains("visible") &&
-		currentPaletteBtn !== paletteBtn
-	) {
-		closeColorChart(lastEvent, currentPaletteSrc);
-		openColorChart(ev, src);
-		currentPaletteBtn = paletteBtn;
-		currentPaletteSrc = src;
-		lastEvent = ev;
-		return;
-	}
-
-	// Alternate open/close if user clicked the same palette button
-	if (colorChart.classList.contains("visible")) {
-		closeColorChart(ev, src);
-		currentPaletteBtn = null;
-		currentPaletteSrc = null;
-		lastEvent = null;
-	} else {
-		openColorChart(ev, src);
-		currentPaletteBtn = paletteBtn;
-		currentPaletteSrc = src;
-		lastEvent = ev;
-	}
-}
-
-function openColorChart(ev, src) {
-	colorChart.classList.remove("hidden");
-	colorChart.classList.add("visible");
-	createColorChart(ev, src);
-	positionColorChartTooltip(ev);
-	togglePaletteMode(ev, src);
-}
-
-function closeColorChart(ev, src) {
-	colorChart.classList.remove("visible");
-	colorChart.classList.add("hidden");
-	togglePaletteMode(ev, src);
-}
-
 // Create note
 function createNote(note) {
 	notes.push(note);
 	localStorage.setItem("notes", JSON.stringify(notes));
 }
 
+// Render notes
+function renderNotes(notes) {
+	const notesList = document.querySelector(".js-active-notes");
+	notesList.innerHTML = "";
+	const activeNotes = notes.filter((note) => !note.deleted);
+	const deletedNotes = notes.filter((note) => note.deleted);
+
+	if (notes.length === 0 || deletedNotes.length === notes.length) {
+		notesList.innerHTML = `<p class="content-lg white m-auto mt-40">No notes to keep</p>`;
+		return;
+	}
+
+	activeNotes.reverse().forEach((note) => {
+		const noteEl = createNoteEl(note, "notes");
+		noteEl.dataset.id = note.id;
+		notesList.append(noteEl);
+	});
+}
+
 // Reset form and icon color
 function formReset(title, content) {
 	const paletteContainer = form.querySelector(".js-palette-container");
 	const path = paletteContainer.querySelector("svg path");
-
 	title.value = "";
 	content.value = "";
 	colorValue = "#ffffff";
 	path.setAttribute("fill", "#999B9E");
+	changeFormColor(colorValue);
 }
 
 document.addEventListener("click", (ev) => {
@@ -110,9 +83,7 @@ document.addEventListener("click", (ev) => {
 
 	// Click outside → close the color chart
 	closeColorChart(lastEvent, currentPaletteSrc);
-	currentPaletteBtn = null;
-	currentPaletteSrc = null;
-	lastEvent = null;
+	currentPaletteBtn = currentPaletteSrc = lastEvent = null;
 });
 
 renderNotes(notes);
