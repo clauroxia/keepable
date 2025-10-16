@@ -55,8 +55,8 @@
 	border-radius: 0px 25px 25px 0px;
 }
 
-.button:active {
-	background-color: #999b9e;
+.button:hover {
+	background-color: #747475;
 }
 
 .container-right {
