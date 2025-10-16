@@ -11,18 +11,21 @@ let lastEvent = null;
 form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	const { title, content } = event.target.elements;
+
+	if (!title.value.trim() && !content.value.trim()) {
+		alert("Please add a title or content to your note.");
+		formReset(title, content);
+		return;
+	}
+
 	const newNote = {
 		id: crypto.randomUUID(),
-		title: title.value,
-		content: content.value,
+		title: title.value.trim(),
+		content: content.value.trim(),
 		color: colorValue,
 		deleted: false,
 	};
 
-	if (!title.value && !content.value) {
-		alert("Please add a title or content to your note.");
-		return;
-	}
 	createNote(newNote);
 	renderNotes(notes);
 	formReset(title, content);
