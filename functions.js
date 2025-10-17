@@ -103,9 +103,38 @@ function togglePaletteMode(ev, src) {
 	path.setAttribute("fill", newFill);
 }
 
+function handlePinClick(e) {
+	const pinBtn = e.target.closest(".js-pin-button");
+	if (!pinBtn) return;
+
+	e.preventDefault();
+	const noteEl = pinBtn.closest(".js-single-note");
+	const noteId = noteEl.dataset.id;
+	const note = notes.find((n) => n.id === noteId);
+	if (note) {
+		pinNote(note);
+		togglePinColor(e, note.pinned);
+	}
+}
+
+function pinNote(note) {
+	note.pinned = !note.pinned;
+	localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function togglePinColor(ev, isPinned) {
+	const pinContainer = ev.target.closest(".js-pin-container");
+	const path = pinContainer.querySelector("svg path");
+	if (isPinned) {
+		path.setAttribute("fill", "#999B9E");
+	} else {
+		path.setAttribute("fill", "#FFFFFF");
+	}
+}
+
 // Delete note
 function deleteNote(note) {
-	if (isTrash(note)) {
+	if (note.deleted) {
 		const index = notes.indexOf(note);
 		notes.splice(index, 1);
 	} else {

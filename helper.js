@@ -8,9 +8,11 @@ function createNoteEl(note, type) {
 	const leftIcon = document.createElement("a");
 	const rightCont = document.createElement("div");
 	const rightIcon = document.createElement("a");
+	const pinCont = document.createElement("div");
+	const pinIcon = document.createElement("a");
 
 	//setup elements
-	div.classList.add("single-note", "js-single-note");
+	div.classList.add("single-note", "relative", "js-single-note");
 	noteDetail.classList.add("flex", "flex-column", "gap-2_5");
 	title.classList.add("content-xs", "h-5");
 	title.textContent = note.title;
@@ -18,14 +20,35 @@ function createNoteEl(note, type) {
 	content.textContent = note.content;
 	div.style.backgroundColor = note.color;
 	actions.classList.add("note__actions");
+	div.dataset.id = note.id;
 
 	if (type === "notes") {
+		pinCont.classList.add(
+			"icon-container",
+			"pin-container",
+			"white-transparent",
+			"js-pin-container"
+		);
+		pinIcon.classList.add("icon", "js-pin-button");
+		pinIcon.innerHTML = `<svg 
+													width="14" 
+													height="18" 
+													viewBox="0 0 14 18" 
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg" 
+												>
+													<path 
+														d="M1.96875 0.5H11.5312C11.7211 0.5 11.875 0.653896 11.875 0.84375V2.53125C11.875 2.7211 11.7211 2.875 11.5312 2.875H9.49316L9.5498 3.42676L9.98047 7.58398L10.0098 7.86621L10.2666 7.98633C11.8629 8.72852 13 10.0057 13 11.5312C13 11.7211 12.8461 11.875 12.6562 11.875H7.375V15.9805L6.75 17.2305L6.125 15.9805V11.875H0.84375C0.653896 11.875 0.5 11.7211 0.5 11.5312C0.5 10.0196 1.62118 8.73592 3.2334 7.98633L3.49023 7.86621L3.51953 7.58398L3.9502 3.42676L4.00684 2.875H1.96875C1.7789 2.875 1.625 2.7211 1.625 2.53125V0.84375C1.625 0.653896 1.7789 0.5 1.96875 0.5Z"
+														fill="${note.pinned ? "#999B9E" : "#FFFFFF"}"
+														stroke="#999B9E"
+													/>
+												</svg>`;
 		leftCont.classList.add(
 			"icon-container",
 			"white-transparent",
 			"js-palette-container"
 		);
-		leftIcon.classList.add("js-palette-button", "icon");
+		leftIcon.classList.add("icon", "js-palette-button");
 		leftIcon.innerHTML = `<svg
 														width="18"
 														height="18"
@@ -39,10 +62,12 @@ function createNoteEl(note, type) {
 														/>
 													</svg>`;
 		rightCont.classList.add("icon-container", "white-transparent");
-		rightIcon.classList.add("js-delete-button", "icon");
+		rightIcon.classList.add("icon", "js-delete-button");
 		rightIcon.innerHTML = `<img
 														src="./images/trash.svg"
 														/>`;
+		pinCont.append(pinIcon);
+		div.append(pinCont);
 	}
 
 	if (type === "trash") {
@@ -125,7 +150,3 @@ function changeFormColor(color) {
 	const formButton = document.querySelector(".js-form button");
 	formButton.style.backgroundColor = color;
 }
-
-const isTrash = (note) => {
-	return note.deleted == true;
-};

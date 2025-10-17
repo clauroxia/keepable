@@ -22,6 +22,7 @@ form.addEventListener("submit", (event) => {
 		id: crypto.randomUUID(),
 		title: title.value.trim(),
 		content: content.value.trim(),
+		pinned: false,
 		color: colorValue,
 		deleted: false,
 	};
@@ -35,6 +36,7 @@ form.addEventListener("click", (e) => handlePaletteClick(e, form));
 activeNotes.addEventListener("click", (e) =>
 	handlePaletteClick(e, activeNotes)
 );
+activeNotes.addEventListener("click", (e) => handlePinClick(e));
 
 // Create note
 function createNote(note) {
@@ -56,7 +58,6 @@ function renderNotes(notes) {
 
 	activeNotes.reverse().forEach((note) => {
 		const noteEl = createNoteEl(note, "notes");
-		noteEl.dataset.id = note.id;
 		notesList.append(noteEl);
 	});
 }

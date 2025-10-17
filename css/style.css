@@ -57,3 +57,9 @@
 	border-radius: 100%;
 	cursor: pointer;
 }
+
+.pin-container {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}

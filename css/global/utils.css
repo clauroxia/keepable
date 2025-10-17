@@ -209,3 +209,7 @@
 .rounded {
 	border-radius: 100%;
 }
+
+.relative {
+	position: relative;
+}
